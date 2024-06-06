@@ -5,6 +5,10 @@
     "action": {
         "default_popup": "index.html"
     },
+    "icons": {
+      "128": "logo.png"
+    },
+    "omnibox": {"keyword": "fs"},
     "permissions": [
         "scripting",
         "tabs"
@@ -18,5 +22,8 @@
           "matches": ["<all_urls>"],
           "js": ["contentScript.js"]
         }
-      ]
+      ],
+      "background": {
+        "service_worker": "background.js"
+      }
 }

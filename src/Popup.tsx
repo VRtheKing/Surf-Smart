@@ -22,6 +22,7 @@ const Popup: React.FC = () => {
             const summaryContainer = document.getElementById('summaryContainer');
             if (summaryContainer) {
                 summaryContainer.innerText = data.summary;
+                summaryContainer.style.textAlign = 'left'
             }
         } catch (error) {
             console.error('Error:', error);
@@ -29,9 +30,10 @@ const Popup: React.FC = () => {
     };
 
     return (
-        <div>
-            <button onClick={onClick}>Summarize Page</button>
-            <div id="summaryContainer"></div>
+        <div style={{ textAlign: 'center', padding: '20px' }}>
+            <h2>Summarize Page</h2>
+            <button style={{ marginBottom: '10px' }} onClick={onClick}>Generate Summary</button>
+            <div id="summaryContainer" style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '5px', textAlign: 'left', minWidth: '300px' }}></div>
         </div>
     );
 };
