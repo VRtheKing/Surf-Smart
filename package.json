@@ -13,8 +13,12 @@
     "@mui/material": "^5.15.15",
     "@mui/styled-engine": "^5.15.14",
     "@types/chrome": "^0.0.266",
+    "dotenv": "^16.4.5",
+    "dotenv-webpack": "^8.1.0",
+    "groq-sdk": "^0.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

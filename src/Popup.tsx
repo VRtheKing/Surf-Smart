@@ -1,29 +1,31 @@
 import React from 'react';
+import Groq from "groq-sdk";
+import ReactMarkdown from 'react-markdown';
+
+const groq = new Groq({ apiKey: import.meta.env.VITE_GROQ_API_KEY, dangerouslyAllowBrowser: true  });
+
+export async function getGroqSummary() {
+    const [tab] = await chrome.tabs.query({ currentWindow: true, active: true });
+    const url = tab.url || '';
+    return groq.chat.completions.create({
+        messages: [
+        {
+            role: "user",
+            content: "Summarize the content of this webpage, if there is any code snippet then include the snippet in your response in rich text. If there is any solution to the problem in the webpage, then make the responce as the solution available in the site for the problem" + url,
+        },
+        ],
+        model: "llama3-8b-8192",
+    });
+}
 
 const Popup: React.FC = () => {
+    const [summary, setSummary] = React.useState('');
+
     const onClick = async () => {
-        const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-        const url = tab.url;
-
         try {
-            const response = await fetch('http://127.0.0.1:5000/summarize', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ url: url })
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            const summaryContainer = document.getElementById('summaryContainer');
-            if (summaryContainer) {
-                summaryContainer.innerText = data.summary;
-                summaryContainer.style.textAlign = 'left'
-            }
+            const chatCompletion = await getGroqSummary();
+            const content = chatCompletion.choices[0]?.message?.content || "";
+            setSummary(content);
         } catch (error) {
             console.error('Error:', error);
         }
@@ -33,7 +35,18 @@ const Popup: React.FC = () => {
         <div style={{ textAlign: 'center', padding: '20px' }}>
             <h2>Summarize Page</h2>
             <button style={{ marginBottom: '10px' }} onClick={onClick}>Generate Summary</button>
-            <div id="summaryContainer" style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '5px', textAlign: 'left', minWidth: '300px' }}></div>
+            <div 
+                id="summaryContainer" 
+                style={{ 
+                    border: '1px solid #ccc', 
+                    padding: '20px', 
+                    borderRadius: '10px', 
+                    textAlign: 'left', 
+                    minWidth: '300px',
+                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+                }}>
+                <ReactMarkdown>{summary}</ReactMarkdown>
+            </div>
         </div>
     );
 };
