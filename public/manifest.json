@@ -1,17 +1,18 @@
 {
     "manifest_version":3,
     "version": "0.0.1",
-    "name": "Browse-Smart",
+    "name": "Surf Smart",
     "action": {
         "default_popup": "index.html"
     },
     "icons": {
       "128": "logo.png"
     },
-    "omnibox": {"keyword": "fs"},
+    "omnibox": {"keyword": "qs"},
     "permissions": [
         "scripting",
-        "tabs"
+        "tabs",
+        "favicon"
     ],
     "host_permissions": [
         "https://*/*",
