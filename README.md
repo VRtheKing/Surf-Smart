@@ -1,5 +1,5 @@
 
-# Browse-Smart Chrome Extension
+# Surf-Smart Chrome Extension
 
 Browse-Smart is a Chrome extension designed to enhance your browsing experience by providing convenient features right at your fingertips. With Browse-Smart, you can summarize webpages for quick understanding and perform fast searches directly on the websites you visit, eliminating the need to go through search engine results.
 
