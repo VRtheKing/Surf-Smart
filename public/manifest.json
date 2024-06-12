@@ -12,7 +12,9 @@
     "permissions": [
         "scripting",
         "tabs",
-        "favicon"
+        "favicon",
+        "tabs",
+        "tabGroups"
     ],
     "host_permissions": [
         "https://*/*",

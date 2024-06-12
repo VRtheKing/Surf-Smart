@@ -1,4 +1,5 @@
 import React from 'react';
+import { tidyTabs } from './TidyTabs';
 import Groq from "groq-sdk";
 import ReactMarkdown from 'react-markdown';
 
@@ -38,6 +39,14 @@ const Popup: React.FC = () => {
         }
     };
 
+    const onTidyTabsClick = async () => {
+        try {
+            await tidyTabs();
+        } catch (error) {
+            console.error('Error tidying tabs:', error);
+        }
+    };
+
     return (
         <div>
             <div id='name-logo' style={{width: "100%"}}>
@@ -46,6 +55,7 @@ const Popup: React.FC = () => {
             <div style={{ textAlign: 'center', padding: '0 20px 20px 20px' }}>
                 <h2 color='black'>Summarize Page</h2>
                 <button style={{ marginBottom: '10px' }} onClick={onClick}>Generate Summary</button>
+                <button style={{ marginBottom: '10px', marginLeft: '10px' }} onClick={onTidyTabsClick}>Tidy Tabs</button>
                 {summary && (
                     <div 
                         id="summaryContainer" 
