@@ -46,6 +46,30 @@ const Popup: React.FC = () => {
             console.error('Error tidying tabs:', error);
         }
     };
+    const ungroupAllTabs = async () => {
+        try {
+            const groups = await chrome.tabGroups.query({});
+            
+            if (groups.length === 0) {
+                console.log('No groups to ungroup.');
+                return;
+            }
+            for (const group of groups) {
+                const tabsInGroup = await chrome.tabs.query({ groupId: group.id });
+                const tabIdsInGroup = tabsInGroup.map(tab => tab.id!).filter(id => id !== undefined);
+                
+                if (tabIdsInGroup.length > 0) {
+                    await chrome.tabs.ungroup(tabIdsInGroup);
+                    console.log(`Ungrouped tabs from group ${group.id}`);
+                }
+            }
+    
+            console.log('All tabs ungrouped successfully');
+        } catch (error) {
+            console.error('Error ungrouping tabs:', error);
+        }
+    }
+    
 
     return (
         <div>
@@ -56,6 +80,7 @@ const Popup: React.FC = () => {
                 <h2 color='black'>Summarize Page</h2>
                 <button style={{ marginBottom: '10px' }} onClick={onClick}>Generate Summary</button>
                 <button style={{ marginBottom: '10px', marginLeft: '10px' }} onClick={onTidyTabsClick}>Tidy Tabs</button>
+                <button style={{ marginBottom: '10px', marginLeft: '10px' }} onClick={ungroupAllTabs}>Ungroup Tabs</button>
                 {summary && (
                     <div 
                         id="summaryContainer" 
