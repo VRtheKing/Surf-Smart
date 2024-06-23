@@ -34,6 +34,7 @@ const Popup: React.FC = () => {
             const chatCompletion = await getGroqSummary();
             const content = chatCompletion.choices[0]?.message?.content || "";
             setSummary(content);
+            console.log(content);
         } catch (error) {
             console.error('Error:', error);
         }
