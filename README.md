@@ -1,7 +1,7 @@
 
 # Surf-Smart Chrome Extension
 
-Surf-Smart is a Chrome extension designed to enhance your browsing experience by providing convenient features right at your fingertips. With Surf-Smart, you can summarize webpages for quick understanding and perform fast searches directly on the websites you visit, eliminating the need to go through search engine results.
+Surf-Smart is a Chrome extension designed to enhance your browsing experience by providing convenient features right at your fingertips. With Surf-Smart, you can summarize webpages for quick understanding, perform fast searches directly on the websites you visit, and manage your tabs efficiently by grouping them based on related topics.
 
 ## Features
 
@@ -12,6 +12,10 @@ Surf-Smart incorporates state-of-the-art Language Model (LLM) technology to summ
 ### Fast Search
 
 Say goodbye to the hassle of navigating through search engine results. Surf-Smart allows you to perform lightning-fast searches directly on the websites you're browsing. No more wasted time clicking through search engine links; get the information you need instantly.
+
+### Tidy Tabs
+
+Efficiently manage your browsing sessions with the Tidy Tabs feature. Group tabs based on related topics, making it easier to navigate through your tabs and maintain an organized browsing environment. Tidy Tabs helps you keep your workflow smooth and your browser clutter-free.
 
 ## Installation
 
@@ -27,11 +31,12 @@ To install Surf-Smart, follow these simple steps:
 
 Once installed, using Surf-Smart is straightforward:
 
-1.  Navigate to any webpage you want to summarize or search within.
+1.  Navigate to any webpage you want to summarize, search within, or manage tabs.
 2.  Click on the Surf-Smart icon in your Chrome toolbar.
 3.  Choose the desired action from the dropdown menu:
     -   **Summarize**: Generates a concise summary of the webpage.
     -   **Search**: Allows you to perform a quick search directly on the current webpage.
+    -   **Tidy Tabs**: Groups your open tabs based on related topics.
 4.  Enjoy a more efficient browsing experience with Surf-Smart!
 
 ## Support
