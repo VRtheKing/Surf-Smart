@@ -21,11 +21,11 @@ Efficiently manage your browsing sessions with the Tidy Tabs feature. Group tabs
 
 To install Surf-Smart, follow these simple steps:
 
-1.  Clone this repository to your local machine.
-2.  Open Google Chrome and navigate to `chrome://extensions`.
-3.  Enable **Developer mode** in the top right corner.
-4.  Click on **Load unpacked** and select the directory where you cloned Surf-Smart.
-5.  Surf-Smart will now be installed and ready to use in your Chrome browser.
+1.  Download the `Surf_Smart_Beta.crx` file from [GitHub](https://github.com/VRtheKing/Surf-Smart/releases) and extract it using 7-Zip or WinRAR.
+2.  Open `chrome://extensions` in Google Chrome and enable Developer mode in the top-right corner.
+3.  Click the `Load unpacked` option and select the extracted folder.
+
+Voila! Enjoy the future of web browsing with Surf-Smart.
 
 ## Usage
 
