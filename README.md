@@ -41,7 +41,7 @@ Once installed, using Surf-Smart is straightforward:
 
 ## Support
 
-For any issues, feedback, or feature requests, please [submit an issue](https://github.com/yourusername/surf-smart/issues) on GitHub. We're always eager to improve Surf-Smart and make it even more useful for you.
+For any issues, feedback, or feature requests, please [submit an issue](https://github.com/VRtheKing/Surf-Smart/issues) on GitHub. We're always eager to improve Surf-Smart and make it even more useful for you.
 
 ## Contributing
 
