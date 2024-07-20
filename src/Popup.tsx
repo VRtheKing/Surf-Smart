@@ -74,24 +74,31 @@ const Popup: React.FC = () => {
 
     return (
         <div>
-            <div id='name-logo' style={{width: "100%"}}>
-                <img src="name-logo.svg" alt="Name-Logo-Bro" height="40rem"/>
+            <div id="name-logo" style={{ width: "100%", textAlign: 'center' }}>
+                <img src="name-logo.svg" alt="Name-Logo-Bro" style={{ height: "3rem", maxWidth: "100%" }} />
             </div>
-            <div style={{ textAlign: 'center', padding: '0 20px 20px 20px' }}>
-                <h2 color='black'>Summarize Page</h2>
-                <button style={{ marginBottom: '10px' }} onClick={onClick}>Generate Summary</button>
-                <button style={{ marginBottom: '10px', marginLeft: '10px' }} onClick={onTidyTabsClick}>Tidy Tabs</button>
-                <button style={{ marginBottom: '10px', marginLeft: '10px' }} onClick={ungroupAllTabs}>Ungroup Tabs</button>
+            <div style={{ textAlign: 'center', padding: '0 2% 2% 2%' }}>
+                <h2 style={{ color: 'black', fontSize: '1.2rem' }}>Summarize Page</h2>
+                <div style={{ marginBottom: '1rem' }}>
+                    <button style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }} onClick={onClick}>Generate Summary</button>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
+                    <button style={{ padding: '0.5rem 1rem', fontSize: '0.8rem', height: '2.3rem', whiteSpace: 'nowrap' }} onClick={onTidyTabsClick}>Tidy Tabs</button>
+                    <button style={{ padding: '0.5rem 1rem', fontSize: '0.8rem', height: '2.3rem', whiteSpace: 'nowrap' }} onClick={ungroupAllTabs}>Ungroup Tabs</button>
+                </div>
                 {summary && (
                     <div 
                         id="summaryContainer" 
                         style={{ 
                             border: '1px solid #fff', 
-                            padding: '20px', 
-                            borderRadius: '10px', 
+                            padding: '1rem', 
+                            borderRadius: '0.625rem', 
                             textAlign: 'left', 
                             minWidth: '300px',
-                            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+                            boxShadow: '0px 0px 0.625rem rgba(0, 0, 0, 0.1)',
+                            margin: '1rem auto',
+                            maxWidth: '80%',
+                            wordWrap: 'break-word'
                         }}>
                         <ReactMarkdown>{summary}</ReactMarkdown>
                     </div>
