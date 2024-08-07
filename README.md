@@ -9,9 +9,9 @@ Surf-Smart is a Chrome extension designed to enhance your browsing experience by
 
 Surf-Smart incorporates state-of-the-art Language Model (LLM) technology to summarize webpages. Quickly grasp the main points and key information of any webpage without having to read through the entire content.
 
-### Fast Search
+### Quick Search
 
-Say goodbye to the hassle of navigating through search engine results. Surf-Smart allows you to perform lightning-fast searches directly on the websites you're browsing. No more wasted time clicking through search engine links; get the information you need instantly.
+Say goodbye to the hassle of navigating through search engine results. Surf-Smart allows you to perform lightning-fast searches directly on the websites you're browsing. No more wasted time clicking through search engine links. get the information you need instantly.
 
 ### Tidy Tabs
 
