@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { tidyTabs } from './TidyTabs';
 import Groq from 'groq-sdk';
 import ReactMarkdown from 'react-markdown';
+import './Popus.css';
 
 const groq = new Groq({
     apiKey: import.meta.env.VITE_GROQ_API_KEY as string,
@@ -35,9 +36,13 @@ export async function getGroqSummary() {
 }
 
 const Popup: React.FC = () => {
-    const [summary, setSummary] = React.useState<string>('');
+    const [summary, setSummary] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
+    const [loading_tabs, setLoading_tabs] = useState<boolean>(false);
 
     const summarizeContent = async () => {
+        setLoading(true);
+        setSummary('');
         try {
             const chatCompletion = await getGroqSummary();
             const content = chatCompletion.choices[0]?.message?.content || '';
@@ -45,20 +50,25 @@ const Popup: React.FC = () => {
             console.log(content);
         } catch (error) {
             console.error('Error:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
     const onTidyTabsClick = async () => {
         try {
+            setLoading_tabs(true);
             await tidyTabs();
+            setLoading_tabs(false);
         } catch (error) {
             console.error('Error tidying tabs:', error);
         }
     };
 
-    const [ask, setAsk] = React.useState<string>('');
+    const [ask, setAsk] = useState<string>('');
     const quesPage = async (event: React.FormEvent) => {
         event.preventDefault(); 
+        setLoading(true); 
         try {
             const page = await onWindowLoad() || ' ';
             const askContent = await groq.chat.completions.create({
@@ -76,6 +86,8 @@ const Popup: React.FC = () => {
             console.log(content);
         } catch (error) {
             console.error('Error:', error);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -98,7 +110,7 @@ const Popup: React.FC = () => {
                 }
             }
 
-            // console.log('All tabs ungrouped successfully');
+            // console.log('all tabs ungrouped successfully');
         } catch (error) {
             console.error('Error ungrouping tabs:', error);
         }
@@ -110,10 +122,9 @@ const Popup: React.FC = () => {
                 <img src="name-logo.svg" alt="Name-Logo-Bro" style={{ height: '3rem', maxWidth: '100%' }} />
             </div>
             <div style={{ textAlign: 'center', padding: '0 2% 2% 2%' }}>
-                {/* <h2 style={{ color: 'black', fontSize: '1.2rem' }}></h2> */}
                 <div style={{ marginBottom: '1rem', marginTop: '1rem' }}>
-                    <button style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }} onClick={summarizeContent}>
-                        Get Summary
+                    <button style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }} onClick={summarizeContent} disabled={loading}>
+                        {loading ? 'Loading...' : 'Get Summary'}
                     </button>
                 </div>
                 <form onSubmit={quesPage} style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', paddingBottom: '1rem', gap: '0.3rem'}}>
@@ -123,9 +134,10 @@ const Popup: React.FC = () => {
                     id="messageInput"
                     placeholder="Ask about page..."
                     value={ask}
+                    autoComplete='off'
                     onChange={(e) => {setAsk(e.target.value)}}
-                    style={{background: 'none', color: 'black', outline: 'none', border: '2px solid #e54f47', borderRadius: '0.625rem', maxWidth: '70%', textOverflow: 'clip', paddingLeft: '4%'}}/>
-                    <button className="send-button" style={{display: 'flex', alignItems:'center', justifyContent:'center'}} type='submit'>
+                    style={{background: 'none', color: 'black', outline: 'none', border: '1px solid #e54f47', borderRadius: '0.625rem', maxWidth: '70%', textOverflow: 'clip', paddingLeft: '4%'}}/>
+                    <button className="send-button" style={{display: 'flex', alignItems:'center', justifyContent:'center'}} type='submit' disabled={loading}>
                         <img src='send-btn.png' alt='Ask' style={{height: '1rem'}}/>
                     </button>
                 </form>
@@ -133,7 +145,7 @@ const Popup: React.FC = () => {
                     <button
                         style={{ padding: '0.5rem 1rem', fontSize: '0.8rem', height: '2.3rem', whiteSpace: 'nowrap' }}
                         onClick={onTidyTabsClick}>
-                        Tidy Tabs
+                        Organize Tabs
                     </button>
                     <button
                         style={{ padding: '0.5rem 1rem', fontSize: '0.8rem', height: '2.3rem', whiteSpace: 'nowrap' }}
@@ -141,21 +153,14 @@ const Popup: React.FC = () => {
                         Ungroup Tabs
                     </button>
                 </div>
-                {summary && (
-                    <div
-                        id="summaryContainer"
-                        style={{
-                            border: '1px solid #fff',
-                            padding: '1rem',
-                            borderRadius: '0.625rem',
-                            textAlign: 'left',
-                            minWidth: '300px',
-                            boxShadow: '0px 0px 0.625rem rgba(0, 0, 0, 0.1)',
-                            margin: '1rem auto',
-                            maxWidth: '80%',
-                            wordWrap: 'break-word',
-                        }}
-                    >
+                {loading && (
+                    <div id="summaryContainer" className="loading-summary"></div>
+                )}
+                {loading_tabs && (
+                    <div id="tab-bar" className="loading-tabs"></div>
+                )}
+                {summary && !loading && (
+                    <div id="summaryContainer">
                         <ReactMarkdown>{summary}</ReactMarkdown>
                     </div>
                 )}
@@ -199,3 +204,4 @@ function DOMtoString(): string {
 }
 
 export default Popup;
+
