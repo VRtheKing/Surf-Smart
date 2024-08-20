@@ -13,10 +13,10 @@ export async function getGroqSummary() {
     const [tab] = await chrome.tabs.query({ currentWindow: true, active: true });
     let content = await onWindowLoad() || ' ';
 
-    if (content.length > 8196){
+    if (content.trim().split(/\s+/).length > 8150){
         content = tab.url || ' ';
     }
-    console.log(content);
+    // console.log(content);
     
     return groq.chat.completions.create({
         messages: [
@@ -32,6 +32,7 @@ export async function getGroqSummary() {
             },
         ],
         model: 'llama3-8b-8192',
+        // model: 'llama-3.1-8b-instant',
     });
 }
 
@@ -47,7 +48,7 @@ const Popup: React.FC = () => {
             const chatCompletion = await getGroqSummary();
             const content = chatCompletion.choices[0]?.message?.content || '';
             setSummary(content);
-            console.log(content);
+            // console.log(content);
         } catch (error) {
             console.error('Error:', error);
         } finally {
@@ -79,11 +80,12 @@ const Popup: React.FC = () => {
                     },
                 ],
                 model: 'llama3-8b-8192',
+                // model: 'llama-3.1-8b-instant',
             });
             setAsk('');
             const content = askContent.choices[0]?.message?.content || '';
             setSummary(content);
-            console.log(content);
+            // console.log(content);
         } catch (error) {
             console.error('Error:', error);
         } finally {
@@ -96,7 +98,7 @@ const Popup: React.FC = () => {
             const groups = await chrome.tabGroups.query({});
             
             if (groups.length === 0) {
-                console.log('No groups to ungroup.');
+                // console.log('No groups to ungroup.');
                 return;
             }
 
@@ -117,7 +119,7 @@ const Popup: React.FC = () => {
     };
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
             <div id="name-logo" style={{ width: '100%', textAlign: 'center' }}>
                 <img src="name-logo.svg" alt="Name-Logo-Bro" style={{ height: '3rem', maxWidth: '100%' }} />
             </div>

@@ -29,7 +29,7 @@ export async function tidyTabs() {
         if (typeof content !== 'string') {
             throw new Error('Invalid response format. Expected string.');
         }
-
+        console.log(content);
         let groupedTabs: GroupedTabs = {};
         try {
             groupedTabs = JSON.parse(content) as GroupedTabs;
@@ -53,7 +53,7 @@ export async function tidyTabs() {
             }
         }
 
-        console.log('Tabs tidied successfully');
+        // console.log('Tabs tidied successfully');
     } catch (error) {
         console.error('Error tidying tabs:', error);
     }
