@@ -136,6 +136,7 @@ const Popup: React.FC = () => {
                     id="messageInput"
                     placeholder="Ask about page..."
                     value={ask}
+                    autoFocus
                     autoComplete='off'
                     onChange={(e) => {setAsk(e.target.value)}}
                     style={{background: 'none', color: 'black', outline: 'none', border: '1px solid #e54f47', borderRadius: '0.625rem', maxWidth: '70%', textOverflow: 'clip', paddingLeft: '4%'}}/>
