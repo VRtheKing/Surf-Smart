@@ -79,7 +79,8 @@ const Popup: React.FC = () => {
                         content: ask +page,
                     },
                 ],
-                model: 'llama3-8b-8192',
+                model: 'llama-3.1-70b-versatile',
+                // model: 'llama3-8b-8192',
                 // model: 'llama-3.1-8b-instant',
             });
             setAsk('');
