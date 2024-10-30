@@ -17,9 +17,9 @@ Perform instant searches 🔎 directly on the sites you visit. No more jumping t
 
 Keep your tabs organized effortlessly! Tidy Tabs automatically groups your open tabs based on related topics, maintaining a clutter-free and smooth browsing environment. Say goodbye to tab chaos and hello to productivity! 🧹
 
-### ❓ Ask on Page
+### ❓ Ask about Page
 
-Interact directly with the content you’re viewing using the Ask on Page feature. Pose questions 🤔 about the webpage, and Surf-Smart will provide relevant insights based on the context, giving you a personalized and engaging browsing experience.
+Interact directly with the content you’re viewing using the Ask about Page feature. Pose questions 🤔 about the webpage, and Surf-Smart will provide relevant insights based on the context, giving you a personalized and engaging browsing experience.
 
 ## Installation 🛠️
 
@@ -41,7 +41,7 @@ Once installed, using Surf-Smart is simple:
     -   **Summarize**: Get a concise summary of the webpage ✍️.
     -   **Search**: Perform quick searches directly on the current webpage 🔍.
     -   **Tidy Tabs**: Organize your open tabs based on topics 📚.
-    -   **Ask on Page**: Ask questions and receive insights based on the webpage content 💬.
+    -   **Ask about Page**: Ask questions and receive insights based on the webpage content 💬.
 4.  Elevate your browsing experience instantly!
 
 ## Support 🙌

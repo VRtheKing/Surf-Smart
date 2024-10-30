@@ -16,8 +16,8 @@ export async function tidyTabs() {
                     role: "user",
                     content: `The following list shows the currently open tabs in my browser. Group them based on their
                      titles and content. The groups should be sorted like how a human would sort the tabs for managing
-                     their tabs based on the topics and content. Provide a JSON response where each key represents a group name and its
-                    corresponding value is an array of tab titles belonging to that group. If any tabs do not
+                     their tabs based on the topics and content like "travel, shopping, weather". Provide a JSON response where each key represents a group name and its
+                    corresponding value is an array of tab titles belonging to that group "dont club two topics together". If any tabs do not
                     fit into specific groups, place them under "Misc".\n\nTabs:\n${tabTitles.join('\n')}`,
                 },
             ],
