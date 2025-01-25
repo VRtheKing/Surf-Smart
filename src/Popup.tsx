@@ -72,7 +72,12 @@ const Popup: React.FC = () => {
         event.preventDefault(); 
         setLoading(true); 
         try {
-            const page = await onWindowLoad() || ' ';
+            const [tab] = await chrome.tabs.query({ currentWindow: true, active: true });
+            let page = await onWindowLoad() || ' ';
+            if (page.length > 6000){
+                page = tab.url || ' ';
+            }
+            console.log(page);
             const askContent = await groq.chat.completions.create({
                 messages: [
                     {
@@ -80,13 +85,17 @@ const Popup: React.FC = () => {
                         content: ask +page,
                     },
                 ],
-                model: 'llama-3.1-70b-versatile',
+                model: 'llama-3.3-70b-versatile',
                 // model: 'llama3-8b-8192',
                 // model: 'llama-3.1-8b-instant',
             });
             setAsk('');
             const content = askContent.choices[0]?.message?.content || '';
-            setSummary(content);
+            const cap = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
+            const formattedAsk = `${cap(ask.trim().replace(/\?+$/, ''))}?`;
+
+            setSummary(`**${formattedAsk}**\n\n${content}`);
+
             // console.log(content);
         } catch (error) {
             console.error('Error:', error);

@@ -1,5 +1,6 @@
 #root {
   max-width: 1280px;
+  /* max-width: fit-content; */
   min-height: fit-content;
   margin: 0 auto;
   padding: 1rem;
